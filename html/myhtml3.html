@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML />
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+div{margin-top:100px;text-align:center;}
+</style>
+<script type="text/javascript" src="cookie.js"></script>
+<script type="text/javascript">
+function touchRock(){
+var userName;
+if(userName) {
+alert("I like the attention," + userName +".Thank you.");
+else {
+userName=prompt("What's your name?","Enter your name.");
+if(userName){
+alert("Nice to meet your ," + userName + ".");
+writeCookie("irock_username", userName, 5 * 365);
+}
+}
+document.getElementById("rockImg").src="image5.jpg";
+}
+}
+
+function greetUser() {
+var userName = readCookie("irock_username");
+if(userName)
+alert("hello" + userName + ",I missed you.");
+else
+alert('Hello,I am your pet rock');
+}
+</script>
+</head>
+<body onload="greetUser();">
+<div>
+<img id="rockImg" src="image.jpg" alt="正在载入中" onclick="touchRock();"/>
+</div>
+</body>
+</html> 

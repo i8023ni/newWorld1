@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset=utf-8">
+<title></title>
+<style>
+div{text-align:center;}
+</style>
+<script type="text/javascript">
+function updateOrder() {
+const TAXRATE=0.05;
+const DONUTPRICE=3;
+var numCakeDonuts = parseDonuts(document.getElementById("numOfCake").value);
+var numGlazedDonuts = parseDonuts(document.getElementById("numOfGlazed").value);
+var subTotal=(parseInt(numCakeDonuts)+parseInt(numGlazedDonuts))*DONUTPRICE;
+var tax = subTotal * TAXRATE;
+var total = subTotal + tax;
+document.getElementById("subTotal").value="$" + subTotal.toFixed(2);;
+document.getElementById("tax").value="$" + tax.toFixed(2);
+document.getElementById("total").value="$" + total.toFixed(2);
+}
+
+function parseDonuts(donutsString) {
+var numDonuts = 0;
+numDonuts = parseInt(donutsString);
+if(donutsString.indexOf("dozen") != -1)
+numDonuts *= 12;
+return numDonuts;
+}
+
+function placeOrder() {
+if(document.getElementById("userName").value=="")
+alert("I'm sorry but you must provide your name before submitting an order.");
+else if(document.getElementById("time").value=="" || isNaN(document.getElementById("time").value))
+alert("I'm sorry but you must provide the number of minutes until"+" pick-up before submitting an order.");
+else
+form.submit();
+}
+</script>
+</head>
+<body>
+<div>
+<h1>Duncan's Just-In-Time Donuts</h1>
+<h2>All donuts 50 cents each, cake or glazed!</h2>
+<p>name:<input type="text" id="userName" /></p>
+<p>#of cake donuts: <input type="text" id="numOfCake" value="" onchange="updateOrder()"/></p>
+<p>#of glazed donuts: <input type="text" id="numOfGlazed" value="" onchange="updateOrder()"/></p>
+<p>Minutes'til pickup: <input type="text" id="time" /></p>
+<form method="POST">
+<p>Subtotal: <input type="text" id="subTotal" /></p>
+<p>Tax: <input type="text" id="tax" /></p>
+<p>Total: <input type="text" id="total" /></p>
+<p><input type="submit" value="Place Order" onclick="placeOrder()"/></p>
+</form>
+</div>
+</body>
+</html>          
